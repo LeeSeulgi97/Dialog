@@ -2,6 +2,7 @@ package com.example.lsk49.dialog;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +19,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView test1,test2,test3,test4,test5,test6;
+    private TextView test1,test2,test3,test4,test5,test6,test7;
     int setitem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
                 TimePickerDialog timeDialog = new TimePickerDialog(MainActivity.this,
                         mTimeSetListener, 0, 0, false);
                 timeDialog.show();
+            }
+        });
+
+        test7=(TextView)findViewById(R.id.test7);
+        test7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setMessage("잠시만 기다려 주세요.");
+
+                progressDialog.show();
             }
         });
     }
