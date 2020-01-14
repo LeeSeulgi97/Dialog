@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView test1;
+    private TextView test1,test2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder testDialog = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder testDialog = new AlertDialog.Builder(MainActivity.this,android.R.style.Theme_DeviceDefault_Dialog);
                 testDialog.setTitle("일반 다이얼로그")
                         .setMessage("선택사항 - 예 or 아니오 (다이얼로그종료)")
                         .setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -39,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
                         });
                 testDialog.setCancelable(false); //백버튼으로 팝업창 닫힘 방지
                 testDialog.show();
+            }
+        });
+        test2 =(TextView)findViewById(R.id.test2);
+        test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CharSequence[] listitem = {"흰색","검은색","빨간색","파란색","초록색"};
+                AlertDialog.Builder ListDialog = new AlertDialog.Builder(MainActivity.this);
+                ListDialog.setTitle("리스트 다이얼로그 - 색상선택")
+                        .setItems(listitem, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this,listitem[which]+"을 선택하셨습니다.",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
             }
         });
 
