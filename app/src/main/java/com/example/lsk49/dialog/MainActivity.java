@@ -2,6 +2,7 @@ package com.example.lsk49.dialog;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView test1,test2,test3,test4,test5;
+    private TextView test1,test2,test3,test4,test5,test6;
     int setitem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,25 @@ public class MainActivity extends AppCompatActivity {
                 DatePickerDialog yearDialog = new DatePickerDialog(MainActivity.this,
                         mDateSetListener, nYear, nMon, nDay);
                 yearDialog.show();
+            }
+        });
+
+        test6=(TextView)findViewById(R.id.test6);
+        test6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog.OnTimeSetListener mTimeSetListener =
+                        new TimePickerDialog.OnTimeSetListener() {
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                Toast.makeText(getApplicationContext(),
+                                        hourOfDay + ":" + minute, Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        };
+
+                TimePickerDialog timeDialog = new TimePickerDialog(MainActivity.this,
+                        mTimeSetListener, 0, 0, false);
+                timeDialog.show();
             }
         });
     }
