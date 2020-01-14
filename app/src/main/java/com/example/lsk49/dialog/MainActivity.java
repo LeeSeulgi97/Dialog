@@ -1,5 +1,6 @@
 package com.example.lsk49.dialog;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -7,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView test1,test2,test3;
+    private TextView test1,test2,test3,test4,test5;
     int setitem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,5 +91,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //이후에 라디오버튼 싱글초이스말고 멀티초이스도 추가예정
+
+        test5=(TextView)findViewById(R.id.test5);
+        test5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                int nYear = c.get(Calendar.YEAR);
+                int nMon = c.get(Calendar.MONTH);
+                int nDay = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog.OnDateSetListener mDateSetListener =
+                        new DatePickerDialog.OnDateSetListener() {
+                            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                                  int dayOfMonth) {
+                                String strDate = String.valueOf(year) + "년 ";
+                                strDate += String.valueOf(monthOfYear+1) + "월 ";
+                                strDate += String.valueOf(dayOfMonth) + "일";
+
+
+                                Toast.makeText(getApplicationContext(), strDate, Toast.LENGTH_SHORT).show();
+                            }
+                        };
+
+                DatePickerDialog yearDialog = new DatePickerDialog(MainActivity.this,
+                        mDateSetListener, nYear, nMon, nDay);
+                yearDialog.show();
+            }
+        });
     }
 }
