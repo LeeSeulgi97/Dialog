@@ -23,13 +23,5 @@
         android:textSize="30dp"
         android:layout_margin="5dp"/>
 
-    <TextView
-        android:id="@+id/test3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="라디오 버튼 다이얼로그 - Alertdialog(SingleChoice)"
-        android:textSize="30dp"
-        android:layout_margin="5dp"/>
-
 
 </LinearLayout>

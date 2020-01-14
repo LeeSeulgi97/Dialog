@@ -5,15 +5,13 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView test1,test2,test3;
-    int setitem;
+    private TextView test1,test2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,33 +57,6 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
-        test3=(TextView)findViewById(R.id.test3);
-        test3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final CharSequence[] listitem2 = {"흰색", "검은색", "빨간색", "파란색", "초록색"};
-                AlertDialog.Builder ListDialog = new AlertDialog.Builder(MainActivity.this);
-                ListDialog.setTitle("라디오 버튼 다이얼로그 - 색상선택(싱글)")
-                        .setSingleChoiceItems(listitem2, -1, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                setitem = which;
-                            }
-                    })
-                        .setNeutralButton("선택", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-//                                Log.e("tmfrl","which"+which);
-//                                Log.e("tmfrl","setitem"+setitem);
-//                                if (which >= 0) {              //여기서 which가 -3이 나온다. 위에 checkeditem의 역할이 뭔지 찾아봐야할듯.
-                                    Toast.makeText(MainActivity.this, listitem2[setitem] + "을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
-//                                }
-                            }
-                        })
-                        .show();
 
-            }
-        });
-        //이후에 라디오버튼 싱글초이스말고 멀티초이스도 추가예정
     }
 }
